@@ -10,8 +10,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 app.use(router);
 
-io.on('connectION', (socket) => {
+io.on('connect', (socket) => {
     console.log('we have aa new connection !!!');
+
+    socket.on('join', ({ name, room }) => {
+        console.log(name, room)
+
+    });
+
+
     socket.on('disconnect', () => {
         console.log('User had left !!!');
     })
